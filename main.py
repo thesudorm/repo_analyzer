@@ -6,15 +6,14 @@ from xml.dom import minidom
 from xml.parsers.expat import ExpatError
 
 # CONSTANTS
-SRC_FILES = ["c", "cpp", "cc", "cs"]
+SRC_FILES = ["c", "cpp", "cc", "cs", "java"]
 
 #Takes a file name as an input and determines if it is a source file or not
 def IsSourceFile(filename):
     is_src = False
-    if(filename.find(".") >= 0):
-        file_extention = m.filename.split(".")[1]
-        if file_extention in SRC_FILES:
-            is_src = True
+    parsed = filename.split(".")
+    if(parsed[-1] in SRC_FILES):
+        is_src = True
     return is_src
 
 def GetSRCML(source):
@@ -71,23 +70,47 @@ def CountLeadingTabs(s):
 def main():
     # Constants
     REPO_DIR = "./repos/"
+    DATA_DIR = "./data/"
+
     # parsing arguments
     fileName = sys.argv[1]
     repoURLFile = open(fileName, 'r')
 
     repoURLs = repoURLFile.readlines()
     repoURLs = repoURLs[0:2] # just taking the first 2 for now for testing purposes
+    dirs = []
+    dataDirs = []
 
-    # clone all of the repositories
     try:
         os.mkdir(REPO_DIR)
     except OSError as error:
         print(error)
 
+    try:
+        os.mkdir(DATA_DIR)
+    except OSError as error:
+        print(error)
+
+    # clone all of the repositories
     for url in repoURLs:
         parsed = url.strip().split("/")
         directoryName = parsed[-2] + "+" + parsed[-1][:-4]
+
         subprocess.run(["git", "clone", url.strip(), REPO_DIR + directoryName])
+
+        dirs.append(REPO_DIR + directoryName)
+        dataDirs.append(DATA_DIR + directoryName)
+        try:
+            os.mkdir(DATA_DIR + directoryName)
+        except OSError as error:
+            print(error)
+
+    # convert all source files into XML
+    for folder in dirs:
+        files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
+        for f in files:
+            if IsSourceFile(f):
+                print(f)
 
 
 if __name__ == "__main__":

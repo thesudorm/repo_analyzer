@@ -1,5 +1,6 @@
 import subprocess
 import os
+import sys
 
 from xml.dom import minidom
 from xml.parsers.expat import ExpatError
@@ -67,3 +68,27 @@ def CountLeadingSpaces(s):
 def CountLeadingTabs(s):
     return len(s) - len(s.lstrip('\t'))
 
+def main():
+    # Constants
+    REPO_DIR = "./repos/"
+    # parsing arguments
+    fileName = sys.argv[1]
+    repoURLFile = open(fileName, 'r')
+
+    repoURLs = repoURLFile.readlines()
+    repoURLs = repoURLs[0:2] # just taking the first 2 for now for testing purposes
+
+    # clone all of the repositories
+    try:
+        os.mkdir(REPO_DIR)
+    except OSError as error:
+        print(error)
+
+    for url in repoURLs:
+        parsed = url.strip().split("/")
+        directoryName = parsed[-2] + "+" + parsed[-1][:-4]
+        subprocess.run(["git", "clone", url.strip(), REPO_DIR + directoryName])
+
+
+if __name__ == "__main__":
+    main()

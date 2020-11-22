@@ -104,13 +104,20 @@ def main():
             os.mkdir(DATA_DIR + directoryName)
         except OSError as error:
             print(error)
-
+    
     # convert all source files into XML
+    i = 0 # data directory iterator
+    x = 1 # file count 
+
     for folder in dirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
         for f in files:
             if IsSourceFile(f):
                 print(f)
+                subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
+                x = x + 1
+        x = 1
+        i = i + 1
 
 
 if __name__ == "__main__":

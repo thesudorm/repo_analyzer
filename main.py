@@ -121,13 +121,18 @@ def main():
         i = i + 1
 
     # analyze the XML
-    print("gitcloneurl,numvars,numcamelcase,numsnakecase")
+    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs")
     i = 0
     for folder in dataDirs:
+
+        numberFuncs = 0
+        numberCamelCaseFuncs = 0
+        numberSnakeCaseFuncs = 0
 
         numberVars = 0
         numberCamelCaseVars = 0
         numberSnakeCaseVars = 0
+
         numberTabsIndented = 0
         numberSpacesIndented = 0
         
@@ -135,8 +140,12 @@ def main():
         for f in files:
             xmlFile = open(f, 'r')
             xml = xmlFile.read()
+
             variables = GetVariableNamesFromSRCML(xml)
+            functions = GetFunctionNamesFromSRCML(xml)
+
             numberVars = len(variables) + numberVars
+            numberFuncs = len(variables) + numberFuncs
 
             for v in variables:
                 if IsCamelCase(v):
@@ -144,7 +153,13 @@ def main():
                 if IsSnakeCase(v):
                     numberSnakeCaseVars = numberSnakeCaseVars + 1
 
-        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars))
+            for f in functions:
+                if IsCamelCase(f):
+                    numberCamelCaseFuncs = numberCamelCaseFuncs + 1
+                if IsSnakeCase(f):
+                    numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
+
+        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars) + "," + str(numberFuncs) +  "," + str(numberCamelCaseFuncs) + "," + str(numberSnakeCaseFuncs))
         i = i + 1
 
 if __name__ == "__main__":

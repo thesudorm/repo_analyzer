@@ -78,7 +78,7 @@ def main():
 
     repoURLs = repoURLFile.readlines()
     repoURLs = repoURLs[0:2] # just taking the first 2 for now for testing purposes
-    dirs = []
+    repoDirs = []
     dataDirs = []
 
     try:
@@ -98,7 +98,7 @@ def main():
 
         subprocess.run(["git", "clone", url.strip(), REPO_DIR + directoryName])
 
-        dirs.append(REPO_DIR + directoryName)
+        repoDirs.append(REPO_DIR + directoryName)
         dataDirs.append(DATA_DIR + directoryName)
         try:
             os.mkdir(DATA_DIR + directoryName)
@@ -106,19 +106,46 @@ def main():
             print(error)
     
     # convert all source files into XML
+
     i = 0 # data directory iterator
     x = 1 # file count 
 
-    for folder in dirs:
+    for folder in repoDirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
         for f in files:
             if IsSourceFile(f):
-                print(f)
+                # create xml
                 subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
                 x = x + 1
         x = 1
         i = i + 1
 
+    # analyze the XML
+    print("gitcloneurl,numvars,numcamelcase,numsnakecase")
+    i = 0
+    for folder in dataDirs:
+
+        numberVars = 0
+        numberCamelCaseVars = 0
+        numberSnakeCaseVars = 0
+        numberTabsIndented = 0
+        numberSpacesIndented = 0
+        
+        files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
+        for f in files:
+            xmlFile = open(f, 'r')
+            xml = xmlFile.read()
+            variables = GetVariableNamesFromSRCML(xml)
+            numberVars = len(variables) + numberVars
+
+            for v in variables:
+                if IsCamelCase(v):
+                    numberCamelCaseVars = numberCamelCaseVars + 1
+                if IsSnakeCase(v):
+                    numberSnakeCaseVars = numberSnakeCaseVars + 1
+
+        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars))
+        i = i + 1
 
 if __name__ == "__main__":
     main()

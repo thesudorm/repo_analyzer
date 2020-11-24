@@ -110,20 +110,10 @@ def main():
     i = 0 # data directory iterator
     x = 1 # file count 
 
+    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs")
+
     for folder in repoDirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
-        for f in files:
-            if IsSourceFile(f):
-                # create xml
-                subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
-                x = x + 1
-        x = 1
-        i = i + 1
-
-    # analyze the XML
-    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs")
-    i = 0
-    for folder in dataDirs:
 
         numberFuncs = 0
         numberCamelCaseFuncs = 0
@@ -135,31 +125,37 @@ def main():
 
         numberTabsIndented = 0
         numberSpacesIndented = 0
-        
-        files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
+
         for f in files:
-            xmlFile = open(f, 'r')
-            xml = xmlFile.read()
+            if IsSourceFile(f):
+                # create xml
+                subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
 
-            variables = GetVariableNamesFromSRCML(xml)
-            functions = GetFunctionNamesFromSRCML(xml)
+                xmlFile = open(dataDirs[i] + "/" + str(x) + ".xml")
+                xml = xmlFile.read()
 
-            numberVars = len(variables) + numberVars
-            numberFuncs = len(variables) + numberFuncs
+                variables = GetVariableNamesFromSRCML(xml)
+                functions = GetFunctionNamesFromSRCML(xml)
 
-            for v in variables:
-                if IsCamelCase(v):
-                    numberCamelCaseVars = numberCamelCaseVars + 1
-                if IsSnakeCase(v):
-                    numberSnakeCaseVars = numberSnakeCaseVars + 1
+                numberVars = len(variables) + numberVars
+                numberFuncs = len(variables) + numberFuncs
 
-            for f in functions:
-                if IsCamelCase(f):
-                    numberCamelCaseFuncs = numberCamelCaseFuncs + 1
-                if IsSnakeCase(f):
-                    numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
+                for v in variables:
+                    if IsCamelCase(v):
+                        numberCamelCaseVars = numberCamelCaseVars + 1
+                    if IsSnakeCase(v):
+                        numberSnakeCaseVars = numberSnakeCaseVars + 1
+
+                for f in functions:
+                    if IsCamelCase(f):
+                        numberCamelCaseFuncs = numberCamelCaseFuncs + 1
+                    if IsSnakeCase(f):
+                        numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
+                x = x + 1
 
         print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars) + "," + str(numberFuncs) +  "," + str(numberCamelCaseFuncs) + "," + str(numberSnakeCaseFuncs))
+
+        x = 1
         i = i + 1
 
 if __name__ == "__main__":

@@ -110,7 +110,7 @@ def main():
     i = 0 # data directory iterator
     x = 1 # file count 
 
-    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs")
+    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented")
 
     for folder in repoDirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
@@ -126,11 +126,28 @@ def main():
         numberTabsIndented = 0
         numberSpacesIndented = 0
 
+        loc = 0
+
         for f in files:
             if IsSourceFile(f):
-                # create xml
-                subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
+                # Source code processing
+                sourceCode = open(f)
+                source = sourceCode.readlines();
 
+                for line in source:
+                    numLeadingSpaces = CountLeadingSpaces(line)
+                    numLeadingTabs = CountLeadingTabs(line)
+
+                    if(numLeadingSpaces > 0 and numLeadingTabs == 0):
+                        numberSpacesIndented = numberSpacesIndented + 1
+                    elif (numLeadingTabs > 0 and numLeadingSpaces == 0):
+                        numberTabsIndented = numberTabsIndented + 1
+                    loc = loc + 1
+
+
+                # Variable/Function name parsing
+
+                subprocess.run(["srcml", f, "-o", dataDirs[i] + "/" + str(x) + ".xml"])
                 xmlFile = open(dataDirs[i] + "/" + str(x) + ".xml")
                 xml = xmlFile.read()
 
@@ -153,7 +170,7 @@ def main():
                         numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
                 x = x + 1
 
-        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars) + "," + str(numberFuncs) +  "," + str(numberCamelCaseFuncs) + "," + str(numberSnakeCaseFuncs))
+        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars) + "," + str(numberFuncs) +  "," + str(numberCamelCaseFuncs) + "," + str(numberSnakeCaseFuncs) + "," + str(loc) + "," + str(numberTabsIndented) + "," + str(numberSpacesIndented))
 
         x = 1
         i = i + 1

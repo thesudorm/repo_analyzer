@@ -110,7 +110,7 @@ def main():
     i = 0 # data directory iterator
     x = 1 # file count 
 
-    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented")
+    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented,alonebrace,spacedbrace,nospacedbrace,tabbedbrace")
 
     for folder in repoDirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
@@ -126,6 +126,11 @@ def main():
         numberTabsIndented = 0
         numberSpacesIndented = 0
 
+        aloneBrace = 0
+        spacedBrace = 0
+        noSpacedBrace = 0
+        tabbedBrace = 0
+
         loc = 0
 
         for f in files:
@@ -135,14 +140,29 @@ def main():
                 source = sourceCode.readlines();
 
                 for line in source:
-                    numLeadingSpaces = CountLeadingSpaces(line)
-                    numLeadingTabs = CountLeadingTabs(line)
+                    if(line.strip() != ""):
+                        loc = loc + 1
+                        numLeadingSpaces = CountLeadingSpaces(line)
+                        numLeadingTabs = CountLeadingTabs(line)
 
-                    if(numLeadingSpaces > 0 and numLeadingTabs == 0):
-                        numberSpacesIndented = numberSpacesIndented + 1
-                    elif (numLeadingTabs > 0 and numLeadingSpaces == 0):
-                        numberTabsIndented = numberTabsIndented + 1
-                    loc = loc + 1
+                        if(numLeadingSpaces > 0 and numLeadingTabs == 0):
+                            numberSpacesIndented = numberSpacesIndented + 1
+                        elif (numLeadingTabs > 0 and numLeadingSpaces == 0):
+                            numberTabsIndented = numberTabsIndented + 1
+
+                        index_of_brace = line.find('{')
+                        
+                        if(index_of_brace != -1):
+                            if(line.strip() == '{'): # Standalone brace
+                                aloneBrace += 1
+                            elif(line[index_of_brace - 1] == " " and line[index_of_brace - 2] != '('):
+                                spacedBrace += 1
+                            elif(line[index_of_brace - 1] != " " and line[index_of_brace - 1] != "\t"):
+                                noSpacedBrace += 1
+                            elif(line[index_of_brace - 1] == "\t"):
+                                tabbedBrace += 1
+                            else:
+                                prj_unknown_brace += 1
 
 
                 # Variable/Function name parsing
@@ -170,7 +190,20 @@ def main():
                         numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
                 x = x + 1
 
-        print(repoURLs[i].strip() + "," + str(numberVars) + "," + str(numberCamelCaseVars) + "," + str(numberSnakeCaseVars) + "," + str(numberFuncs) +  "," + str(numberCamelCaseFuncs) + "," + str(numberSnakeCaseFuncs) + "," + str(loc) + "," + str(numberTabsIndented) + "," + str(numberSpacesIndented))
+        print(  repoURLs[i].strip() + "," + 
+                str(numberVars) + "," + 
+                str(numberCamelCaseVars) + "," + 
+                str(numberSnakeCaseVars) + "," + 
+                str(numberFuncs) +  "," + 
+                str(numberCamelCaseFuncs) + "," + 
+                str(numberSnakeCaseFuncs) + "," + 
+                str(loc) + "," + 
+                str(numberTabsIndented) + "," + 
+                str(numberSpacesIndented) + "," +
+                str(aloneBrace) + "," +
+                str(spacedBrace) + "," +
+                str(noSpacedBrace) + "," +
+                str(tabbedBrace))
 
         x = 1
         i = i + 1

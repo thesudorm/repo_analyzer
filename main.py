@@ -77,7 +77,7 @@ def main():
     repoURLFile = open(fileName, 'r')
 
     repoURLs = repoURLFile.readlines()
-    repoURLs = repoURLs[0:2] # just taking the first 2 for now for testing purposes
+    repoURLs = repoURLs[0:50] # just taking the first 2 for now for testing purposes
     repoDirs = []
     dataDirs = []
 
@@ -92,7 +92,9 @@ def main():
         print(error)
 
     # clone all of the repositories
-    for url in repoURLs:
+    for line in repoURLs:
+        parsed_line = line.strip().split(",")
+        url = parsed_line[1]
         parsed = url.strip().split("/")
         directoryName = parsed[-2] + "+" + parsed[-1][:-4]
 
@@ -110,7 +112,7 @@ def main():
     i = 0 # data directory iterator
     x = 1 # file count 
 
-    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented,alonebrace,spacedbrace,nospacedbrace,tabbedbrace")
+    print("gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented,alonebrace,spacedbrace,nospacedbrace,tabbedbrace,unknownbrace")
 
     for folder in repoDirs:
         files = [os.path.join(r,file) for r,d,f in os.walk(folder) for file in f]
@@ -130,13 +132,14 @@ def main():
         spacedBrace = 0
         noSpacedBrace = 0
         tabbedBrace = 0
+        unknownBrace = 0
 
         loc = 0
 
         for f in files:
             if IsSourceFile(f):
                 # Source code processing
-                sourceCode = open(f)
+                sourceCode = open(f, encoding="utf8", errors='ignore')
                 source = sourceCode.readlines();
 
                 for line in source:
@@ -162,7 +165,7 @@ def main():
                             elif(line[index_of_brace - 1] == "\t"):
                                 tabbedBrace += 1
                             else:
-                                prj_unknown_brace += 1
+                                unknownBrace += 1
 
 
                 # Variable/Function name parsing
@@ -171,24 +174,25 @@ def main():
                 xmlFile = open(dataDirs[i] + "/" + str(x) + ".xml")
                 xml = xmlFile.read()
 
-                variables = GetVariableNamesFromSRCML(xml)
-                functions = GetFunctionNamesFromSRCML(xml)
+                if(xml.strip() != ""):
+                    variables = GetVariableNamesFromSRCML(xml)
+                    functions = GetFunctionNamesFromSRCML(xml)
 
-                numberVars = len(variables) + numberVars
-                numberFuncs = len(variables) + numberFuncs
+                    numberVars = len(variables) + numberVars
+                    numberFuncs = len(variables) + numberFuncs
 
-                for v in variables:
-                    if IsCamelCase(v):
-                        numberCamelCaseVars = numberCamelCaseVars + 1
-                    if IsSnakeCase(v):
-                        numberSnakeCaseVars = numberSnakeCaseVars + 1
+                    for v in variables:
+                        if IsCamelCase(v):
+                            numberCamelCaseVars = numberCamelCaseVars + 1
+                        if IsSnakeCase(v):
+                            numberSnakeCaseVars = numberSnakeCaseVars + 1
 
-                for f in functions:
-                    if IsCamelCase(f):
-                        numberCamelCaseFuncs = numberCamelCaseFuncs + 1
-                    if IsSnakeCase(f):
-                        numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
-                x = x + 1
+                    for f in functions:
+                        if IsCamelCase(f):
+                            numberCamelCaseFuncs = numberCamelCaseFuncs + 1
+                        if IsSnakeCase(f):
+                            numberSnakeCaseFuncs = numberSnakeCaseFuncs + 1
+                    x = x + 1
 
         print(  repoURLs[i].strip() + "," + 
                 str(numberVars) + "," + 
@@ -203,7 +207,8 @@ def main():
                 str(aloneBrace) + "," +
                 str(spacedBrace) + "," +
                 str(noSpacedBrace) + "," +
-                str(tabbedBrace))
+                str(tabbedBrace) + "," +
+                str(unknownBrace))
 
         x = 1
         i = i + 1

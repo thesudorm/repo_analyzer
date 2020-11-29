@@ -1,0 +1,103 @@
+[Errno 17] File exists: './repos/'
+[Errno 17] File exists: './data/'
+[Errno 17] File exists: './data/CyC2018+CS-Notes'
+[Errno 17] File exists: './data/Snailclimb+JavaGuide'
+[Errno 17] File exists: './data/iluwatar+java-design-patterns'
+[Errno 17] File exists: './data/MisterBooo+LeetCodeAnimation'
+[Errno 17] File exists: './data/elastic+elasticsearch'
+[Errno 17] File exists: './data/spring-projects+spring-boot'
+[Errno 17] File exists: './data/shadowsocks+shadowsocks-windows'
+[Errno 17] File exists: './data/doocs+advanced-java'
+[Errno 17] File exists: './data/netdata+netdata'
+[Errno 17] File exists: './data/kdn251+interviews'
+[Errno 17] File exists: './data/redis+redis'
+[Errno 17] File exists: './data/macrozheng+mall'
+[Errno 17] File exists: './data/ReactiveX+RxJava'
+[Errno 17] File exists: './data/Genymobile+scrcpy'
+[Errno 17] File exists: './data/spring-projects+spring-framework'
+[Errno 17] File exists: './data/google+guava'
+[Errno 17] File exists: './data/square+okhttp'
+[Errno 17] File exists: './data/square+retrofit'
+[Errno 17] File exists: './data/git+git'
+[Errno 17] File exists: './data/apache+dubbo'
+[Errno 17] File exists: './data/TheAlgorithms+Java'
+[Errno 17] File exists: './data/PhilJay+MPAndroidChart'
+[Errno 17] File exists: './data/bumptech+glide'
+[Errno 17] File exists: './data/airbnb+lottie-android'
+[Errno 17] File exists: './data/php+php-src'
+[Errno 17] File exists: './data/Blankj+AndroidUtilCode'
+[Errno 17] File exists: './data/bilibili+ijkplayer'
+[Errno 17] File exists: './data/wg+wrk'
+[Errno 17] File exists: './data/zxing+zxing'
+[Errno 17] File exists: './data/kon9chunkit+GitHub-Chinese-Top-Charts'
+[Errno 17] File exists: './data/proxyee-down-org+proxyee-down'
+[Errno 17] File exists: './data/JakeWharton+butterknife'
+[Errno 17] File exists: './data/crossoverJie+JCSprout'
+[Errno 17] File exists: './data/netty+netty'
+[Errno 17] File exists: './data/skylot+jadx'
+[Errno 17] File exists: './data/ityouknow+spring-boot-examples'
+[Errno 17] File exists: './data/eugenp+tutorials'
+[Errno 17] File exists: './data/alibaba+arthas'
+[Errno 17] File exists: './data/obsproject+obs-studio'
+[Errno 17] File exists: './data/PowerShell+PowerShell'
+[Errno 17] File exists: './data/CodeHubApp+CodeHub'
+[Errno 17] File exists: './data/NationalSecurityAgency+ghidra'
+[Errno 17] File exists: './data/greenrobot+EventBus'
+[Errno 17] File exists: './data/ctripcorp+apollo'
+[Errno 17] File exists: './data/alibaba+druid'
+[Errno 17] File exists: './data/alibaba+fastjson'
+[Errno 17] File exists: './data/geekxh+hello-algorithm'
+[Errno 17] File exists: './data/FFmpeg+FFmpeg'
+[Errno 17] File exists: './data/scwang90+SmartRefreshLayout'
+[Errno 17] File exists: './data/ggreer+the_silver_searcher'
+gitcloneurl,numvars,numcamelcasevars,numsnakecasevars,numfuncs,numcamelcasefuncs,numsnakecasefuncs,loc,tabsindented,spacesindented,alonebrace,spacedbrace,nospacedbrace,tabbedbrace,unknownbrace
+CyC2018/CS-Notes,git://github.com/CyC2018/CS-Notes.git,115468,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+Snailclimb/JavaGuide,git://github.com/Snailclimb/JavaGuide.git,92613,11,1,4,11,2,0,124,0,86,0,20,1,0,0
+iluwatar/java-design-patterns,git://github.com/iluwatar/java-design-patterns.git,62200,4657,1690,140,4657,2612,3,84056,9,72419,2,8158,434,0,3
+MisterBooo/LeetCodeAnimation,git://github.com/MisterBooo/LeetCodeAnimation.git,61154,45,3,3,45,13,0,298,31,239,0,68,17,0,0
+elastic/elasticsearch,git://github.com/elastic/elasticsearch.git,52441,234738,109864,11304,234738,108494,1774,2197593,0,1917024,4148,318259,16127,0,1
+spring-projects/spring-boot,git://github.com/spring-projects/spring-boot.git,51950,32630,10913,1045,32630,28913,0,480191,291069,108340,3,70449,1485,0,0
+shadowsocks/shadowsocks-windows,git://github.com/shadowsocks/shadowsocks-windows.git,50995,1511,442,87,1511,21,109,16258,0,15221,2007,618,68,0,0
+doocs/advanced-java,git://github.com/doocs/advanced-java.git,50000,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+netdata/netdata,git://github.com/netdata/netdata.git,49557,24048,9707,3646,24048,3522,2798,318007,1155,223759,1683,13172,21159,0,0
+kdn251/interviews,git://github.com/kdn251/interviews.git,48949,1596,311,15,1596,479,0,18175,1661,11396,0,3573,75,0,0
+redis/redis,git://github.com/redis/redis.git,46228,12682,112,1877,12682,2515,2342,152307,24157,104176,1016,18605,145,250,0
+macrozheng/mall,git://github.com/macrozheng/mall.git,43918,3517,2003,31,3517,11903,0,68388,86,63290,0,14656,341,0,0
+ReactiveX/RxJava,git://github.com/ReactiveX/RxJava.git,43803,32227,4534,195,32227,19375,31,389914,0,366965,65,79854,1741,0,0
+Genymobile/scrcpy,git://github.com/Genymobile/scrcpy.git,40687,1030,199,155,1030,258,297,9876,0,8213,2,1750,9,0,0
+spring-projects/spring-framework,git://github.com/spring-projects/spring-framework.git,40362,79871,29135,2901,79871,55422,373,1045999,741894,192861,56,163592,4353,93,10
+google/guava,git://github.com/google/guava.git,39458,47216,14035,2125,47216,31829,7569,670642,0,622977,60,131713,2583,0,0
+square/okhttp,git://github.com/square/okhttp.git,38775,4450,1429,55,4450,2713,83,41492,0,38515,0,5248,58,0,0
+square/retrofit,git://github.com/square/retrofit.git,37009,3085,897,39,3085,1617,0,32079,0,28075,1,5401,97,0,0
+git/git,git://github.com/git/git.git,35069,24258,29,6481,24258,1,8524,249458,196039,13297,9735,16240,151,815,0
+apache/dubbo,git://github.com/apache/dubbo.git,34124,19343,5756,1445,19343,12701,454,237531,67,206105,141,37434,845,0,0
+TheAlgorithms/Java,git://github.com/TheAlgorithms/Java.git,32573,1467,352,43,1467,411,3,15707,11,14527,22,2757,4,0,0
+PhilJay/MPAndroidChart,git://github.com/PhilJay/MPAndroidChart.git,32226,2960,1468,30,2960,1819,1,34246,160,30864,109,3982,127,0,0
+bumptech/glide,git://github.com/bumptech/glide.git,30284,7074,2838,475,7074,4450,884,89069,0,77946,4,14555,196,0,0
+airbnb/lottie-android,git://github.com/airbnb/lottie-android.git,30133,1884,824,102,1884,1106,2,18434,0,16314,0,3413,98,0,0
+php/php-src,git://github.com/php/php-src.git,28913,44451,619,13162,44451,340,10948,1066357,424357,98918,20378,91202,2057,2109,0
+Blankj/AndroidUtilCode,git://github.com/Blankj/AndroidUtilCode.git,28334,3557,1363,356,3557,3587,18,56428,0,52191,0,9745,437,0,0
+bilibili/ijkplayer,git://github.com/bilibili/ijkplayer.git,27749,3449,534,1447,3449,659,1239,37623,11,30889,1481,4012,31,1,0
+wg/wrk,git://github.com/wg/wrk.git,26881,337,3,34,337,49,121,4646,2,3851,51,620,1,0,0
+zxing/zxing,git://github.com/zxing/zxing.git,26656,6271,2600,549,6271,2236,0,60310,0,55163,5,9471,134,0,0
+kon9chunkit/GitHub-Chinese-Top-Charts,git://github.com/kon9chunkit/GitHub-Chinese-Top-Charts.git,26341,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+proxyee-down-org/proxyee-down,git://github.com/proxyee-down-org/proxyee-down.git,25533,619,200,137,619,244,0,4187,0,3500,0,791,20,0,0
+JakeWharton/butterknife,git://github.com/JakeWharton/butterknife.git,25524,1429,453,68,1429,475,0,14027,0,12200,0,2396,33,0,0
+crossoverJie/JCSprout,git://github.com/crossoverJie/JCSprout.git,25476,611,133,18,611,146,3,5437,0,4740,0,732,215,0,0
+netty/netty,git://github.com/netty/netty.git,25351,30557,10711,2084,30557,20406,253,402251,0,366289,11,70697,985,0,0
+skylot/jadx,git://github.com/skylot/jadx.git,24231,8867,3659,784,8867,4415,0,76306,65386,303,10,16861,131,1,0
+ityouknow/spring-boot-examples,git://github.com/ityouknow/spring-boot-examples.git,24230,465,195,5,465,534,0,6541,1709,2437,0,998,101,0,0
+eugenp/tutorials,git://github.com/eugenp/tutorials.git,23852,54699,22241,1989,54699,25861,10942,473145,6290,343391,288,75497,3036,1,0
+alibaba/arthas,git://github.com/alibaba/arthas.git,23833,4681,2057,249,4681,2910,9,52114,567,45343,406,9413,216,0,0
+obsproject/obs-studio,git://github.com/obsproject/obs-studio.git,23506,25180,2713,8090,25180,75,7323,254262,140929,60284,12677,13928,369,188,0
+PowerShell/PowerShell,git://github.com/PowerShell/PowerShell.git,23243,44824,19307,2117,44824,18,771,677452,0,661217,83159,12607,1290,0,2
+CodeHubApp/CodeHub,git://github.com/CodeHubApp/CodeHub.git,23057,2402,598,2,2402,2,0,26670,1028,21807,3407,2424,43,0,0
+NationalSecurityAgency/ghidra,git://github.com/NationalSecurityAgency/ghidra.git,23029,208458,84905,14534,208458,90248,4982,1968941,1508960,284737,7228,278574,2264,176,0
+greenrobot/EventBus,git://github.com/greenrobot/EventBus.git,23005,592,342,22,592,448,3,7169,0,6353,0,1289,4,0,0
+ctripcorp/apollo,git://github.com/ctripcorp/apollo.git,22978,7949,5111,463,7949,3822,10,56053,43,46114,6,8156,704,0,0
+alibaba/druid,git://github.com/alibaba/druid.git,22744,43880,12222,1131,43880,15567,7510,443720,4319,381536,2001,64500,1445,0,0
+alibaba/fastjson,git://github.com/alibaba/fastjson.git,22699,32977,4559,553,32977,12114,5063,192774,5146,161607,822,35933,5048,0,1
+geekxh/hello-algorithm,git://github.com/geekxh/hello-algorithm.git,22229,230,39,0,230,63,4,2814,0,2529,0,574,0,0,0
+FFmpeg/FFmpeg,git://github.com/FFmpeg/FFmpeg.git,22194,102251,982,30767,102251,83,21878,1113516,0,963706,25222,119509,6720,0,21
+scwang90/SmartRefreshLayout,git://github.com/scwang90/SmartRefreshLayout.git,21811,2543,1544,151,2543,1177,14,25089,0,21017,0,3796,170,0,0
+ggreer/the_silver_searcher,git://github.com/ggreer/the_silver_searcher.git,21203,344,0,155,344,0,84,4143,10,3547,2,909,3,0,0

@@ -1,5 +1,4 @@
 CyC2018/CS-Notes,git://github.com/CyC2018/CS-Notes.git,115468
-torvalds/linux,git://github.com/torvalds/linux.git,101432
 Snailclimb/JavaGuide,git://github.com/Snailclimb/JavaGuide.git,92613
 iluwatar/java-design-patterns,git://github.com/iluwatar/java-design-patterns.git,62200
 MisterBooo/LeetCodeAnimation,git://github.com/MisterBooo/LeetCodeAnimation.git,61154

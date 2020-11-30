@@ -178,16 +178,15 @@ def main():
                     variables = GetVariableNamesFromSRCML(xml)
                     functions = GetFunctionNamesFromSRCML(xml)
 
-                    numberVars = len(variables) + numberVars
-                    numberFuncs = len(variables) + numberFuncs
-
                     for v in variables:
+                        numberVars = 1 + numberVars
                         if IsCamelCase(v):
                             numberCamelCaseVars = numberCamelCaseVars + 1
                         if IsSnakeCase(v):
                             numberSnakeCaseVars = numberSnakeCaseVars + 1
 
                     for f in functions:
+                        numberFuncs = 1 + numberFuncs
                         if IsCamelCase(f):
                             numberCamelCaseFuncs = numberCamelCaseFuncs + 1
                         if IsSnakeCase(f):
